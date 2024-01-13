@@ -15,7 +15,7 @@ function upload(selector){
     open.addEventListener('click', ()=> input.click());
 
  input.after(open);
- open.after(preview)
+ open.after(preview);
     const changeHandler = (e) => {
             console.log(e.target.files);
             const files = Array.from(e.target.files);
@@ -29,7 +29,22 @@ function upload(selector){
                     const reader = new FileReader();
                     reader.onload = ev => {  // запустить, только после того как FileReader считает файл.
                         const src = ev.target.result;  // получаем закодированное изображение
-                        preview.insertAdjacentHTML('afterbegin', `<div class="preview-image"><img src="${src}" alt="${file.name}" /></div>`);
+                        /*Переделать под элементы не HTML*/preview.insertAdjacentHTML('afterbegin', `<div class="preview-image">
+<div class="preview-remove">&times;</div>
+<img src="${src}" alt="${file.name}" />
+<div class="preview-info"> 
+<span>${file.name}</span>
+<span>${getSizeEd(file.size)}</span> 
+
+</div>
+</div>`);
+
+                       //remove file
+                        preview.querySelectorAll('.preview-remove').forEach(q => {
+                            q.addEventListener("click", () => {
+                                q.parentNode.remove();
+                            })
+                        })
                     }
                     reader.readAsDataURL(file);  // метод readAsDataURL() является ассинхронным
 
@@ -44,3 +59,10 @@ function upload(selector){
 
 upload('#file');
 
+function getSizeEd(size){
+    const arr = ["B", "KB", "MB", "GB"];
+    if(!size){return "0 "+arr[0];}
+    const i = parseInt(Math.floor(Math.log(size)/Math.log(1024)));
+    //return (Math.round((size/Math.pow(1024, i))*100))/100+" "+arr[i];
+    return Math.round(size/Math.pow(1024, i),2)+" "+arr[i];
+}

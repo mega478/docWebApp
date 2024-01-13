@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital@0;1&display=swap');
+
 body {
     background-color: #666;
     font-family: 'Roboto', sans-serif;
@@ -17,7 +18,7 @@ body {
     box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.2);
 }
 
-.btn{
+.btn {
     color: #42b983;
     position: relative;
     border-radius: 99px;
@@ -34,7 +35,7 @@ body {
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
 }
 
-.btn.primary{
+.btn.primary {
     background: #42b983;
     color: #fff;
 }
@@ -43,27 +44,30 @@ body {
     box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.3);
 }
 
-.btn:hover{
+.btn:hover {
     cursor: pointer;
     opacity: 0.8;
 }
 
-input[type=file]{
+input[type=file] {
     display: none;
 }
-.visible{
+
+.visible {
     display: inline;
 }
 
-.preview{
+.preview {
     display: flex;
     flex-wrap: wrap;
     padding: .5rem;
 }
 
-.preview-image{
+.preview-image {
     margin-bottom: .5rem;
     margin-right: .5rem;
+    position: relative;
+    overflow: hidden;
 }
 
 .preview-image img {
@@ -71,6 +75,45 @@ input[type=file]{
     height: auto;
 }
 
+.preview-remove {
+    opacity: 0;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-weight: bold;
+    background: rgba(255, 255, 255, .5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: opacity .22s;
+}
+
+.preview-image:hover .preview-remove {
+    opacity: .8;
+}
+
+.preview-image:hover .preview-info {
+    bottom: 4px;
+}
+
+.preview-info {
+    height: 25px;
+    position: absolute;
+    bottom: -30px;
+    left: 0;
+    right: 0;
+    font-size: .8rem;
+    background: rgba(255, 255, 255, .5);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5px;
+    transition: bottom .22s;
+
+}
 
 
 
